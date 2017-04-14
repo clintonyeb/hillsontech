@@ -1,0 +1,48 @@
+{% include "header.html" %}
+
+<section id="recover-pass">
+    <div class="container">
+
+        <h1 class="text-center">Recover Password</h1>
+
+        <div class="row">
+            <div class="col-0 col-md-3">
+
+            </div>
+            <div class="col-12 col-md-6">
+                 {% if response.error %}
+                <div class="alert alert-warning text-center" role="alert">
+                    <strong>{{response.error.message}}</strong>
+                </div>
+                {% endif %}
+                {% if response.data.message %}
+                <div class="alert alert-success text-center" role="alert">
+                    <strong>{{response.data.message}}</strong>
+                </div>
+                {% endif %} 
+
+                {% set data = response.data.payload %}
+                
+                <form action="/recover-pass" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{data.email}}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+
+                <p class="text-center">
+                    Forgot password? <a href="/recover-pass">Recover Password</a> 
+                </p>
+
+            </div>
+            <div class="col-0 col-md-3"></div>
+        </div>
+
+    </div>
+</section>
+
+{% include "footer.html" %}
+
+</body>
+</html>
