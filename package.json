@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src -d lib --copy-files",
-    "prepublish": "yarn run build",
-    "dev": "yarn run build && node lib/server.js",
+    "prepublish": "npm run build",
+    "dev": "npm run build && node lib/server.js",
     "flow": "flow status"
   },
   "dependencies": {
