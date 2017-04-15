@@ -27,6 +27,7 @@ body {
     padding-bottom: 3rem;
     color: #5a5a5a;
     position: relative;
+    min-height: 100%;
 }
 @media(min-width:576px){
     .carousel-caption>h2 {
@@ -134,7 +135,9 @@ h3 {
 #apply,
 #login,
 #products,
-#recover-pass {
+#recover-pass,
+#privacy,
+#terms {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -143,7 +146,7 @@ input:invalid {
     border: 1px solid red;
 }
 
-
-/*input:valid {
-  border: 2px solid black;
-}*/
+footer {
+    position: relative;
+    bottom: 0;
+}
