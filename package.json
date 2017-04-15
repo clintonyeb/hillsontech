@@ -9,7 +9,8 @@
     "build": "babel src -d lib --copy-files",
     "prepublish": "yarn run build",
     "dev": "yarn run build && node lib/server.js",
-    "flow": "flow status"
+    "flow": "flow status",
+    "start": "node lib/server.js"
   },
   "dependencies": {
     "async": "^2.3.0",
