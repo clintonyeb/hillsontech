@@ -63,9 +63,6 @@
                     <a class="nav-link" href="#testimonials">Testimonials</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Products</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#contactus">Contact Us</a>
                 </li>
                 {% endif %}
@@ -73,8 +70,13 @@
             <ul class="navbar-nav navbar-right">
                 
                 <li class="nav-item">
+                    <a class="nav-link" href="/products">
+                        <button type="button" class="btn btn-primary btn-sm">Products</button>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/apply">
-                        <button type="button" class="btn btn-primary btn-sm">Sign up for training</button>
+                        <button type="button" class="btn btn-primary btn-sm">Training</button>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -91,9 +93,9 @@
                             {{user.name.split(" ")[0] | lower }}
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Cart</a>
-                        <a class="dropdown-item" href="#">Change Password</a>
+                        <a class="dropdown-item" href="/profile">Profile</a>
+                        <a class="dropdown-item" href="/cart">Cart</a>
+                        <a class="dropdown-item" href="/change-pass">Change Password</a>
                     </div>
                 </li>
                 {% endif %}
