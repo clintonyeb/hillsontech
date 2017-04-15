@@ -6,10 +6,7 @@
   "author": "Clinton Yeboah",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d lib --copy-files",
-    "prepublish": "yarn run build",
-    "dev": "yarn run build && node lib/server.js",
-    "flow": "flow status",
+    "dev": "nodemon lib/server.js",
     "start": "node lib/server.js"
   },
   "dependencies": {
@@ -29,9 +26,6 @@
     "vision": "^4.1.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.43.0",
     "nodemon": "^1.11.0"
   },
   "engines": {
