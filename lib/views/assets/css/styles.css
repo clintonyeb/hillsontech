@@ -138,9 +138,13 @@ h3 {
 #recover-pass,
 #privacy,
 #terms,
-#hire {
+#hire,
+#cart,
+#profile,
+#change-pass {
     margin-top: 20px;
     margin-bottom: 20px;
+    min-height: 90%;
 }
 
 input:invalid {

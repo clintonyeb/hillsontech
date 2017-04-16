@@ -10,19 +10,19 @@
 
             </div>
             <div class="col-12 col-md-6">
-                {% if response.error %}
+                {% if $error %}
                 <div class="alert alert-warning text-center" role="alert">
-                    <strong>{{response.error.message}}</strong>
+                    <strong>{{$error.message}}</strong>
                 </div>
-                {% endif %} {% if response.data.message %}
+                {% endif %} {% if $message %}
                 <div class="alert alert-success text-center" role="alert">
                     <strong>Account creation successful, we have sent you an email</strong>
                 </div>
-                {% endif %} {% set data = response.data.payload %}
+                {% endif %}
                 <form action="/login" method="POST">
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{data.email}}" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ $user.email }}" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
