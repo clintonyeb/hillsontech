@@ -6,7 +6,7 @@
   "author": "Clinton Yeboah",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon lib/server.js",
+    "dev": "nodemon -e js,html,css lib/server.js",
     "start": "node lib/server.js"
   },
   "dependencies": {
