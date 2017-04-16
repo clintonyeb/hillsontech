@@ -74,11 +74,13 @@
                         <button type="button" class="btn btn-primary btn-sm">Products</button>
                     </a>
                 </li>
+                 {% if user.name === null %}
                 <li class="nav-item">
                     <a class="nav-link" href="/apply">
                         <button type="button" class="btn btn-primary btn-sm">Training</button>
                     </a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="/hire">
                         <button type="button" class="btn btn-primary btn-sm">Hire Us</button>
