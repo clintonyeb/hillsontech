@@ -1,5 +1,10 @@
 {% extends "_layout.html" %} {% block title %} Home|{{ super() }} {% endblock %} {% block content %}
 
+{% set $page = response.data.page %}
+{% set $user = response.data.payload %}
+{% set $message = response.data.message %}
+{% set $error = response.error %}
+
 <section id="aboutus">
     <div style="background:transparent !important" class="jumbotron">
         <h1 class="display-4 text-center" style="margin-bottom:10px;">Get to know us</h1>

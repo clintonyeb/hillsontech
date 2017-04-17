@@ -1,5 +1,10 @@
 {% include "_header.html" %}
 
+{% set $page = response.data.page %}
+{% set $user = response.data.payload %}
+{% set $message = response.data.message %}
+{% set $error = response.error %}
+
 <section id="apply">
     <div class="container">
 
@@ -22,7 +27,9 @@
                         </div>
                     {% endif %}
 
-                
+                <p class="text-center">
+                    Already have an account? <a href="/login">Login instead</a>
+                </p>
                 <form action="/apply" method="POST">
                     <div class="form-group">
                         <label for="name">Full name</label>

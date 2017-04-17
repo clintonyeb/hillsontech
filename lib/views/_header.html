@@ -6,6 +6,7 @@
 {% set $message = response.data.message %}
 {% set $error = response.error %}
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,8 +63,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                {% endif %}
-                {% if $page === 'index' %}
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="#aboutus">About Us</a>
                 </li>
@@ -98,7 +98,8 @@
                     </a>
                 </li>
                 
-                {% if $user.name !== null %}
+                {% set $validated = $user.name !== null and $error === null %}
+                {% if validated %}
 
                 <li class="nav-item dropdown my-2 my-lg-0">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -113,8 +114,8 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/{{ "logout" if $user else "login" }}">
-                        <button type="button" class="btn btn-sm {{ "btn-outline-warning" if $user else "btn-outline-primary" }}">{{ "Log out" if $user else "Log in" }}</button>
+                    <a class="nav-link" href="/{{ "logout" if $validated else "login" }}">
+                        <button type="button" class="btn btn-sm {{ "btn-outline-warning" if $validated else "btn-outline-primary" }}">{{ "Log out" if $validated else "Log in" }}</button>
                     </a>
                 </li>
             </ul>

@@ -1,5 +1,10 @@
 {% include "_header.html" %}
 
+{% set $page = response.data.page %}
+{% set $user = response.data.payload %}
+{% set $message = response.data.message %}
+{% set $error = response.error %}
+
 <section id="login">
     <div class="container">
 
@@ -7,19 +12,19 @@
 
         <div class="row">
             <div class="col-0 col-md-3">
-
+               
             </div>
             <div class="col-12 col-md-6">
-                {% if $error %}
+                {% if $error.message %}
                 <div class="alert alert-warning text-center" role="alert">
                     <strong>{{$error.message}}</strong>
                 </div>
                 {% endif %} {% if $message %}
                 <div class="alert alert-success text-center" role="alert">
-                    <strong>Account creation successful, we have sent you an email</strong>
+                    <strong>{{ message }}</strong>
                 </div>
                 {% endif %}
-                 <p class="text-center">
+                <p class="text-center">
                     Don't have an account? <a href="/apply">Sign up here</a>
                 </p>
                 <form action="/login" method="POST">
