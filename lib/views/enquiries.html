@@ -1,0 +1,75 @@
+{% extends "_alayout.html" %} {% set $page = response.data.page %} {% set $data = response.data.payload %} {% set $limit
+= response.data.limit %} {% set $error = response.error %} {% block content %}
+
+<section class="container" id="enquiries">
+
+    <div class="row">
+        <div class="col-0 col-md-2">
+        </div>
+        <div class="col-12 col-md-8">
+            {% for $enq in $data %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-block">
+
+                            <div class="row">
+                                <div class="col-8">
+                                    <h4 class="card-title">From: <strong>{{ $enq.email }}</strong> </h4>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="card-subtitle mb-2 text-muted">Time: <strong>{{$enq.date}}</strong></h6>
+                                </div>
+                            </div>
+                            <p class="card-text"> {{ $enq.message }} </p>
+
+                            <hr>
+
+                            <p><button class="btn pull-right {{ " btn-info " if $enq.response else "btn-primary " }}" type="button"
+                                    data-toggle="collapse" data-target="#response{{loop.index}}" aria-expanded="false" aria-controls="response{{loop.index}}">
+                        {{ "View response" if $enq.response else "Respond" }} 
+                    </button></p>
+
+                            <form action="/contact-delete" method="POST">
+                                <input type="hidden" name="email" value="{{$enq.email}}">
+                                <input type="hidden" name="id" value="{{$enq._id}}">
+                                <button type="submit" class="btn btn-warning">Delete</button>
+                            </form>
+
+                            <div class="collapse" id="response{{loop.index}}">
+
+                                <div class="card card-block">
+
+                                    {% if $enq.response %}
+
+                                    <p>{{$enq.response}}</p>
+                                    {% else %}
+                                    <form action="/respond-email" method="POST">
+                                        <input type="hidden" name="email" value="{{$enq.email}}">
+                                        <input type="hidden" name="id" value="{{$enq._id}}">
+                                        <div class="form-group">
+                                            <label for="response">Response</label>
+                                            <textarea class="form-control" id="response" name="response" rows="4" placeholder="Response to customer" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    </form>
+
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="col-0 col-md-2">
+        </div>
+    </div>
+</section>
+
+{% endblock %}
