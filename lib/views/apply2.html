@@ -1,0 +1,263 @@
+{% include "_header.html" %} {% set $page = response.data.page %} {% set $user = response.data.payload %} {% set $message
+= response.data.message %} {% set $error = response.error %}
+
+<section id="apply">
+    <div class="container">
+
+        <h1 class="text-center">Complete your profile</h1>
+
+        <div class="row">
+            <div class="col-0 col-md-3">
+
+            </div>
+            <div class="col-12 col-md-6">
+
+                {% if $error %}
+                <div class="alert alert-warning text-center" role="alert">
+                    <strong>{{$error.message}}</strong>
+                </div>
+                {% endif %} {% if $message %}
+                <div class="alert alert-success text-center" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+                {% endif %}
+
+                <form action="/profile" method="POST"  enctype="multipart/form-data">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="hidden" name="email" value="{{$user.email}}">
+                            <div class="form-group">
+                                <label for="program">Prefered program</label>
+                                <select class="form-control" id="program" name="program" required >
+                                    <option value="" selected>Choose course</option>
+                                    <option value="c-sharp">C# Programming</option>
+                                    <option value="php">PHP Programming</option>
+                                    <option value="mobile-dev">Mobile App Development</option>
+                                    <option value="content-mgt">Content Management Systems</option>
+                                    <option value="web-design">Website Design</option>
+                                    <option value="comp-network">Computer Networking</option>
+                                    <option value="comp-hardware">Computer Hardware Engineering</option>
+                                    <option value="soft-eng">Software Engineering</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="c-sharp" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $1,500-$3000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+
+                            <div id="php" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $3000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+
+                            <div id="mobile-dev" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $2,000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+
+                            <div id="content-mgt" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $2000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+
+                            <div id="web-design" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $2000-$3000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+
+                            <div id="comp-network" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $2,000-$6000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+
+                            <div id="comp-hardware" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $1000
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 6 months
+                                </p>
+                            </div>
+                            <div id="soft-eng" class="group">
+                                <p>
+                                    <strong>Cost:</strong> $7,000.00
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 1 year
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="timing">Prefered class timing</label>
+                        <select class="form-control" id="timing" name="timing" required>
+                                    <option value="" selected>Choose time</option>
+                                    <option value="morning">Morning</option>
+                                    <option value="afternoon">Afternoon</option>
+                                    <option value="evening">Evening</option>
+                                </select>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-sm-6">
+                            <label for="gender">Gender:</label>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                <input type="radio"  class="form-check-input" name="gender" checked id="male" value="male" >
+                                Male
+                            </label>
+                                <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" id="female" value="female" >
+                                Female
+                            </label>
+                                <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" id="other" value="other" >
+                                Other
+                            </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="dob" class="col-form-label">Date of birth</label>
+                            <div>
+                                <input class="form-control" type="date" value="2011-08-19" id="dob" name="dob">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profession">Profession</label>
+                        <select class="form-control" id="profession" name="profession" required>
+                                <option value="" selected>Choose profession</option>
+                                <option value="student">Student</option>
+                                <option value="worker">Worker</option>
+                                <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prof-other" class="other">If other, please specify</label>
+                        <input type="text" name="prof-other" class="form-control other" placeholder="..." id="prof-other">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="4" placeholder="Contact address..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="profession">Sponsored by someone?</label>
+                        <select class="form-control" id="sponsor" name="sponsor">
+                                <option value="no" selected>No</option>
+                                <option value="yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-1">
+
+                        </div>
+                        <div class="col-10">
+                            <fieldset class="sponsor">
+                                <legend>Sponsor's details</legend>
+                                <div class="form-group">
+                                    <label for="sponsor-name">Name</label>
+                                    <input type="text" name="sponsor-name" class="form-control" id="sponsor-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sponsor-rel" class="sponsor">Relationship</label>
+                                    <input type="text" name="sponsor-rel" class="form-control" id="sponsor-rel">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sponsor-occ" class="sponsor">Occupation</label>
+                                    <input type="text" name="sponsor-occ" class="form-control" id="sponsor-occ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sponsor-contact" class="sponsor">Contact</label>
+                                    <input type="number" name="sponsor-contact" placeholder="Mobile number" class="form-control" id="sponsor-contact">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-1">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">Proof of identity</label>
+                        <input type="file" size="40"  class="form-control-file" id="proof" accept=".png,.jpg,.doc,.jpeg,.pdf" name="file" aria-describedby="fileHelp" required>
+                        <small id="fileHelp" class="form-text text-muted">
+                            Passport or Driving Lincense or National Id Card or Birth Cerificate 
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+            <div class="col-0 col-md-3"></div>
+        </div>
+
+    </div>
+</section>
+
+{% include "_footer.html" %}
+
+<script>
+    $(document).ready(function () {
+
+        // hide elements
+        $('.group').hide();
+        $('.other').hide();
+        $('.sponsor').hide();
+
+        // register events
+        $('#program').change(function () {
+            $('.group').hide();
+            $('#' + $(this).val()).show();
+        })
+
+        $('#profession').change(function () {
+            $('.other').hide();
+            if ($(this).val() == 'other')
+                $('.other').show();
+        })
+
+        $('#sponsor').change(function () {
+            $('.sponsor').hide();
+            if ($(this).val() == 'yes')
+                $('.sponsor').show();
+        })
+    });
+</script>
+
+</body>
+
+</html>

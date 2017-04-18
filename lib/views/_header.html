@@ -86,7 +86,7 @@
                         <button type="button" class="btn btn-sm {{ "btn-success" if $page === 'products' else "btn-primary" }}">Products</button>
                     </a>
                 </li>
-                 {% if ($user.name === null and $error === null) %}
+                 {% if ($user.name == null and $error == null) %}
                 <li class="nav-item">
                     <a class="nav-link" href="/apply">
                         <button type="button" class="btn btn-primary btn-sm {{ "btn-success" if $page === 'apply' else "btn-primary" }}">Training</button>
@@ -96,6 +96,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/hire">
                         <button type="button" class="btn btn-primary btn-sm {{ "btn-success" if $page === 'hire' else "btn-primary" }}">Hire Us</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">
+                        <button type="button" class="btn btn-primary btn-sm {{ "btn-success" if $page === 'cart' else "btn-primary" }}">Cart</button>
                     </a>
                 </li>
                 
