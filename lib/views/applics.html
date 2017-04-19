@@ -1,1 +1,37 @@
-{% extends "_alayout.html" %}
+{% extends "_alayout.html" %} {% set $page = response.data.page %} {% set $data = response.data.payload %} {% set $limit
+= response.data.limit %} {% set $error = response.error %} {% block content %}
+
+
+<section class="container" id="applics">
+    <div class="row">
+        <div class="col-0 col-md-2">
+        </div>
+        <div class="col-12 col-md-8">
+            {% for $enq in $data %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-block">
+
+                            <div class="row">
+                                <div class="col-8">
+                                    <h4 class="card-title">Application from: <strong>{{ $enq.name }}</strong> </h4>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="card-subtitle mb-2 text-muted">Time: <strong>{{$enq.date}}</strong></h6>
+                                </div>
+                            </div>
+                                <a href="/admin/applics/{{ $enq._id }}"><button class="btn pull-right btn-info" type="button">View details</button></a>                                
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="col-0 col-md-2">
+        </div>
+    </div>
+</section>
+{% endblock %}
