@@ -1,264 +1,165 @@
-{% extends "_layout.html" %}  {% block content %}
+{% extends "_layout.html" %} {% block content %} {% set $page = response.data.page %} {% set $user = response.data.payload
+%} {% set $message = response.data.message %} {% set $error = response.error %}
 
-{% set $page = response.data.page %}
-{% set $user = response.data.payload %}
-{% set $message = response.data.message %}
-{% set $error = response.error %}
-
-<section id="aboutus">
-    <div style="background:transparent !important" class="jumbotron">
-        <h1 class="display-4 text-center" style="margin-bottom:10px;">Get to know us</h1>
-        <p class="lead">
-            In Hillson Technology Global Limited, we are committed to combining the use of modern tools and hardwares, together with
-            competent human skills and an effective management body, to create and maintain user centric technological solutions.
-            We started in the year 2013, and we have become trusted by our customers for providing reliable, secured, quality
-            and cheap services. All these has only come as a result of our unconstrained passion and dedication.
-        </p>
-        <u>
-            <h3>Our Team</h3>
-        </u>
-        <p class="lead">
-            Our team has a combined experience of over 10 years, with professional qualifications from diverse walks of life and battle
-            tested expertise of software, hardware development and project management, which makes our team one of the few
-            eligible professional players in the IT solutions field. This is not just our job, it is our passion!, to inspire
-            and touch the world through technology.
-        </p>
-        <u>
-            <h3>Our Mission</h3>
-        </u>
-        <p class="lead">
-            To serve our clients by providing an engineered infrastructure and redefined engineering services through inventiveness,
-            aesthetic sensitivity, and creative imagination.
-        </p>
-        <div class="row">
-            <div class="col-6 col-md-3">
-                <img src="assets/images/about.jpg" alt="..." class="img-thumbnail">
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Contact Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
             </div>
-            <div class="col-6 col-md-3">
-                <img src="assets/images/about.jpg" alt="..." class="img-thumbnail">
+            <div class="modal-body">
+                <p id="info">Sending message, Please wait...</p>
             </div>
-            <div class="col-6 col-md-3">
-                <img src="assets/images/about.jpg" alt="..." class="img-thumbnail">
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="assets/images/about.jpg" alt="..." class="img-thumbnail">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
-        <p class="lead text-center">
-            <strong> <em>Our various branches in Ghana and Nigeria</em></strong>
-        </p>
+    </div>
+</div>
+
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="inner cover reveal text-center">
+                <h1 class="cover-heading animated bounce">Get to know us</h1>
+                <p class="lead">We are committed to combining the use of modern tools and hardwares, together with competent human skills
+                    and an effective management body, to create and maintain user centric technological solutions. We started
+                    in the year 2013, and we have become trusted by our customers for providing reliable, secured, quality
+                    and cheap services. All these has only come as a result of our unconstrained passion and dedication.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="album text-muted" id="services">
+    <div class="container text-center">
+
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/layers.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"><strong>Graphic Designing</strong></p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/text.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Search Engine Optimization and Social Media Optimization</strong> </p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/editor.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Web Designing:</strong> We design, create, analyze, test, maintain and deploy websites of all
+                        walks of life.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/bug.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Customized Solutions</strong> </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/analytics.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Web and Cloud based applications</strong> </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/hand-gesture.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Network Installation:</strong> We deliver a complete professional package, including installation,
+                        testing, certification and ongoing maintenance.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/smartphone-1.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Website Conversion & Maintenance</strong> </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card box">
+                    <img src="assets/images/smartphone.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"> <strong>Mobile applications</strong> </p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card box">
+                    <img src="assets/images/letter.svg" height="170px" alt="Card image cap">
+                    <p class="card-text"><strong>Newsletter design, development and mailer deliveries</strong></p>
+                </div>
+            </div>
+        </div>
 
     </div>
-
-</section>
-
-<hr class="my-4 featurette-divider">
-
-<section id="services">
-    <div style="background:transparent !important" class="jumbotron">
-        <h1 class="display-4 text-center" style="margin-bottom:10px;">Our Services</h1>
-        <p class="lead">
-            With a highly skilled team such us ours, we have the opportunity to provide a diverse set of services. We combine our efforts
-            and provide these services to our ever satisfied customers.
-        </p><br>
-        <div class="row">
-            <u>
-                <h3>Web Development</h3>
-            </u>
-            <p class="lead">
-                We design, create, analyze, test, maintain and deploy websites of all walks of life. Our websites range from simple to advance
-                designs, including animation and impressive visual cues.
-            </p>
-            <div class="row">
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/web1.png" alt="..." class="img-thumbnail">
-                </div>
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/web2.png" alt="..." class="img-thumbnail">
-                </div>
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/web3.png" alt="..." class="img-thumbnail">
-                </div>
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/graph1.jpg" alt="..." class="img-thumbnail">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <u>
-                <h3>Graphic Designing</h3>
-            </u>
-            <p class="lead">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s.
-            </p>
-            <div class="row">
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/graph1.jpg" alt="..." class="img-thumbnail">
-                </div>
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/graph2.png" alt="..." class="img-thumbnail">
-                </div>
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/graph3.jpg" alt="..." class="img-thumbnail">
-                </div>
-                <div class="col-6 col-md-3">
-                    <img src="assets/images/graph4.jpg" alt="..." class="img-thumbnail">
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <u>
-                <h3>Network Installation</h3>
-            </u>
-            <p class="lead">
-                Whether your business being public, private or educational you can depend on Network Installation Solutions to deliver a
-                complete professional package, including installation, testing, certification and ongoing maintenance.
-            </p>
-        </div>
-        <div class="row">
-            <u>
-                <h3>Web and Cloud based applications</h3>
-            </u>
-            <p class="lead">
-                We provide a complete solution that supports the design, development and deployment of enterprise applications by utilizing
-                the agility & cost effective attributes of the Cloud. We preach and practice cloud strategy to eliminate
-                barriers to innovation, transforms enterprise applications into cost-effective solutions.
-            </p>
-        </div>
-        <div class="row">
-            <u>
-                <h3>Mobile applications and other customized solutions</h3>
-            </u>
-            <p class="lead">
-                Are you one of the business owners, who are calling for a mobile apps development service provider from India! You have visited
-                the right page as we, at Sparx IT Solutions, meet the custom mobile app development requirements of our clients
-                around the world.
-            </p>
-        </div>
-        <p><a class="btn btn-lg btn-primary pull-right padded" href="/hire" role="button">Ask For Services</a></p>
-    </div>
-
-</section>
-
-<hr class="my-4 featurette-divider">
-
-<section id="training">
-    <div style="background:transparent !important" class="jumbotron">
-        <h1 class="display-4 text-center" style="margin-bottom:10px;">Quality and Effective Training</h1>
-        <p class="lead">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-            book
-        </p>
-
-        <div class="row">
-            <div class="col-6 col-md-3">
-                <img src="assets/images/train1.jpg" alt="..." class="img-thumbnail">
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="assets/images/train2.jpg" alt="..." class="img-thumbnail">
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="assets/images/train3.jpg" alt="..." class="img-thumbnail">
-            </div>
-            <div class="col-6 col-md-3">
-                <img src="assets/images/train4.jpg" alt="..." class="img-thumbnail">
-            </div>
-        </div>
-        <p><a class="btn btn-lg btn-primary pull-right padded" href="/apply" role="button">Ask For Training</a></p>
-    </div>
-</section>
+</div>
 
 <hr class="my-4 featurette-divider">
 
 <section id="testimonials">
     <div style="background:transparent !important" class="jumbotron">
-        <h1 class="display-4 text-center" style="margin-bottom:10px;">What our clients are saying</h1>
-
+        <h1 class="display-5 text-center" style="margin-bottom:20px;">What our clients are saying</h1>
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" width="75" height="75" src="http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">Media heading</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                        congue felis in faucibus.
+                    <img class="d-flex mr-3 rounded-circle" width="80" height="80" src="assets/images/test2.jpg" alt="Generic placeholder image">
+                    <div class="media-body test">
+                        <h5 class="mt-0">Rochester</h5>
+                        I use HillsonTech Global Ltd. for all of my offshore projects currently. Team is well qualified and have incredible level
+                        of professionalism. I'd recommend them to anyone looking to expand in house capabilities with their
+                        very capable staff.
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" width="75" height="75" src="http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">Media heading</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                        congue felis in faucibus.
+                    <img class="d-flex mr-3 rounded-circle" width="80" height="80" src="assets/images/test3.jpg" alt="Generic placeholder image">
+                    <div class="media-body test">
+                        <h5 class="mt-0">Deal International Inc.</h5>
+                        We came to HillsonTech Global Ltd. with a vision for our website. you listened, that vision with your constructive criticism
+                        and insight, produced a very attractive website! We hear nothing but positive comments! So again,
+                        THANK YOU!
                     </div>
                 </div>
             </div>
-
         </div>
+
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" width="75" height="75" src="http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">Media heading</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                        congue felis in faucibus.
+                    <img class="d-flex mr-3 rounded-circle" width="80" height="80" src="assets/images/test4.jpg" alt="Generic placeholder image">
+                    <div class="media-body test">
+                        <h5 class="mt-0">Connection Graphics (USA)</h5>
+                        I must say working with HillsonTech Global Ltd. & his team has been a pleasure. They took some broken code done by an earlier
+                        Company, streamlined it, & added some improvements.
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" width="75" height="75" src="http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">Media heading</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                        congue felis in faucibus.
+                    <img class="d-flex mr-3 rounded-circle" width="80" height="80" src="assets/images/test5.jpg" alt="Generic placeholder image">
+                    <div class="media-body test">
+                        <h5 class="mt-0">Veg Voyages (Texas)</h5>
+                        Thank you for the wonderful job you and your company did to deliver this valuable marketing tool on our behalf. Please pass
+                        along my sincere thanks to your staff that had a hand in developing our site.
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" width="75" height="75" src="http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">Media heading</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                        congue felis in faucibus.
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="media">
-                    <img class="d-flex mr-3 rounded-circle" width="75" height="75" src="http://is4.mzstatic.com/image/thumb/Music49/v4/e9/4c/2d/e94c2d5f-bdb0-c565-4cc2-f9dfcf7f0b87/source/400x40000bb.png"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">Media heading</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                        congue felis in faucibus.
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -289,15 +190,15 @@
             </div>
         </div>
 
-        <div class="container padded">
+        <div class="container">
 
             <h1 class="text-center">Contact Us Now</h1>
 
-            <div class="row">
-                <div class="col-0 col-md-3">
+            <div class="row test">
+                <div class="col-0 col-md-2">
 
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-8">
 
                     {% if $error %}
                     <div class="alert alert-warning text-center" role="alert">
@@ -308,7 +209,7 @@
                         <strong>Message sent, We will contact you shortly</strong>
                     </div>
                     {% endif %}
-                    <form action="/contacts" method="POST">
+                    <form action="/contacts" method="POST" id="contact">
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{response.data.payload.email}}"
@@ -316,17 +217,18 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="I wish to inquire about your services?" required></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="I wish to inquire about your services?"
+                                required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Submit</button>
                     </form>
                 </div>
-                <div class="col-0 col-md-3"></div>
+                <div class="col-0 col-md-2"></div>
             </div>
 
         </div>
 
-        <div class="row text-center">
+        <div class="row text-center test">
             <div class="col-12 col-md-6 ">
                 <div id="map1"></div>
                 <p>Nigeria Office</p>
@@ -339,5 +241,32 @@
 
     </div>
 </section>
+
+<script>
+    const form = document.getElementById('contact');
+    const email = document.getElementById('email');
+    const message = document.getElementById('message');
+    const info = document.getElementById('info');
+
+    form.addEventListener("submit", function (event) {
+        $('#infoModal').modal({
+            keyboard: false,
+        })
+
+        axios.post('/contacts', {
+                email: email.value.trim(),
+                message: message.value.trim()
+            })
+            .then(function (response) {
+                info.innerHTML = "Message sent successfuuly, we will contact you within 24 hours"
+            })
+            .catch(function (error) {
+                info.innerHTML = "Error sending support. Please try again!";
+                console.log(error);
+            });
+
+        event.preventDefault();
+    }, false);
+</script>
 
 {% endblock %}

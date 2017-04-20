@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% set $page = response.data.page %}
-{% set $user = response.data.payload %}
-{% set $message = response.data.message %}
-{% set $error = response.error %}
+{% set $page = response.data.page %} {% set $user = response.data.payload %} {% set $message = response.data.message %} {%
+set $error = response.error %}
+{% set $validated = ($user.name != null and $error == null) %}
 
 <head>
     <meta charset="utf-8">
@@ -12,25 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="HillsonTech Company Website">
     <meta name="author" content="Clinton Yeboah">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
-
-    {% if $page === 'index' %}
-        <title>Home | HillsonTech</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" /> {% if $page === 'index' %}
+    <title>Home | HillsonTech</title>
     {% elif $page !== null %}
-        <title>{{ $page.split("-")[0] | capitalize }} | HillsonTech</title>
+    <title>{{ $page.split("-")[0] | capitalize }} | HillsonTech</title>
     {% else %}
-        <title>HillsonTech</title>
+    <title>HillsonTech</title>
     {% endif %}
-    
-    <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="/assets/css/bootstrap-reboot.min.css">
+    {#<link rel="stylesheet" href="/assets/css/bootstrap-reboot.min.css"> #}
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
 
@@ -47,83 +39,45 @@
 
 <body data-spy="scroll" data-target=".navbar" data-offset="0">
 
-    
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsible" aria-controls="collapsible"
-            aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-inverse navbar-xs bg-inverse fixed-top navbar-toggleable-md" role="navigation">
+
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-top">
+                     <span class="navbar-toggler-icon"></span>
             </button>
-        <a class="navbar-brand" href="/#" style="color:#00923f">
-            <img src="/assets/images/hill-logo.png" height="30" width="30" alt="company logo"> HillsonTechGlobal
-        </a>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="nav-top">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ "active" if $page == 'index'}}" href="/"><i class="fa fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ "active" if $page == 'products'}}"" href="/products"><i class="fa fa-truck"></i> Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ "active" if $page == 'apply'}}" href="/{{ "profile" if $validated else "login" }}"><i class="fa fa-graduation-cap fa-fw"></i> Training</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ "active" if $page == 'hire'}}" href="/hire"><i class="fa fa-handshake-o fa-fw"></i> Hire Us</a>
+                    </li>
+                </ul>
 
-        <div class="collapse navbar-collapse" id="collapsible">
-            <ul class="navbar-nav mr-auto">
+                 
 
-                {% if $page !== 'index' %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#aboutus">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#testimonials">Testimonials</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contactus">Contact Us</a>
-                </li>
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav navbar-right">
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">
-                        <button type="button" class="btn btn-sm {{ "btn-success" if $page === 'products' else "btn-primary" }}">Products</button>
-                    </a>
-                </li>
-                 {% if ($user.name == null and $error == null) %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/apply">
-                        <button type="button" class="btn btn-primary btn-sm {{ "btn-success" if $page === 'apply' else "btn-primary" }}">Training</button>
-                    </a>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/hire">
-                        <button type="button" class="btn btn-primary btn-sm {{ "btn-success" if $page === 'hire' else "btn-primary" }}">Hire Us</button>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cart">
-                        <button type="button" class="btn btn-primary btn-sm {{ "btn-success" if $page === 'cart' else "btn-primary" }}">Cart</button>
-                    </a>
-                </li>
-                
-                {% set $validated = ($user.name != null and $error == null) %}
-
-                {% if $validated %}
-
-                <li class="nav-item dropdown my-2 my-lg-0">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                            {{ $user.name.split(" ")[0] | lower }}
-                        </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/profile">Profile</a>
-                        <a class="dropdown-item" href="/change-pass">Change Password</a>
-                    </div>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/{{ "logout" if $validated else "login" }}">
-                        <button type="button" class="btn btn-sm {{ "btn-outline-warning" if $validated else "btn-outline-primary" }}">{{ "Log out" if $validated else "Log in" }}</button>
-                    </a>
-                </li>
-            </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link {{ "active" if $page == 'profile'}}"" href="/profile"><i class="fa fa-user fa-fw"></i> My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ "active" if $page == 'cart'}}"" href="/cart"><i class="fa fa-shopping-cart fa-fw"></i> Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/{{ "logout" if $validated else "login" }}">
+                        <i class="fa fa-sign-out fa-fw"></i> {{ "Log out" if $validated else "Log in" }}</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
     </nav>
