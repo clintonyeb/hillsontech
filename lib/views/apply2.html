@@ -22,7 +22,7 @@
                 </div>
                 {% endif %}
 
-                <form action="/profile" method="POST"  enctype="multipart/form-data">
+                <form action="/profile" method="POST" enctype="multipart/form-data">
 
                     <div class="row">
                         <div class="col-6">
@@ -213,13 +213,14 @@
 
                     <div class="form-group">
                         <label for="exampleInputFile">Proof of identity</label>
-                        <input type="file" size="40"  class="form-control-file" id="proof" accept=".png,.jpg,.doc,.jpeg,.pdf" name="file" aria-describedby="fileHelp" required>
+                        <input type="file" size="40" class="form-control-file" id="proof" accept=".png,.jpg,.doc,.jpeg,.pdf" name="file" aria-describedby="fileHelp"
+                            required>
                         <small id="fileHelp" class="form-text text-muted">
-                            Passport or Driving Lincense or National Id Card or Birth Cerificate 
+                            Please upload a <strong style="color:white;" >Valid Passport Picture</strong>
                         </small>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" id="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
             </div>
             <div class="col-0 col-md-3"></div>
@@ -255,7 +256,21 @@
             if ($(this).val() == 'yes')
                 $('.sponsor').show();
         })
+
+        $("#proof").change(function () {
+            const fileHelp = $("#fileHelp");
+            const size = ($("#proof")[0].files[0].size);
+
+            if (size < 1048576) {
+                fileHelp.html('<span>Image looks good</span>')
+            } else {
+                fileHelp.html('<span class="text-danger">File cannot exceed 1MB</span>')
+                $(this).val($.data(this, 'f'));
+                return false;
+            }
+        });
     });
+
 </script>
 
 </body>
