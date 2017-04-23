@@ -1,0 +1,190 @@
+{% include "_header.html" %} {% set $page = response.data.page %} {% set $user = response.data.payload %} {% set $message
+= response.data.message %} {% set $error = response.error %} {% set $courses = { "adv-courses": { "c-sharp": { "name": "C#
+Programming", "cost": "₦85,000.00", "duration": "6 months" }, "php": { "name": "PHP Programming", "cost": "₦160,000.00",
+"duration": "6 months" }, "mobile-dev": { "name": "Mobile App Development", "cost": "₦80,000.00", "duration": "6 months"
+}, "content-mgt": { "name": "Content Management Systems", "cost": "₦250,000.00", "duration": "6 months" }, "web-design":
+{ "name": "Website Design", "cost": "₦320,000.00", "duration": "6 months" }, "comp-network": { "name": "Computer Networking",
+"cost": "₦170,000.00", "duration": "6 months" }, "comp-hardware": { "name": "Computer Hardware Engineering", "cost": "₦60,000.00",
+"duration": "6 months" }, "soft-eng": { "name": "Software Engineering", "cost": "₦450,000.00", "duration": "1 year" } },
+"basic-courses": { "intro-comp": { "name": "Introduction to Computer", "cost": "₦25,000.00", "duration": "3 months" }, "intro-soft":
+{ "name": "Introduction to Computer Software’s", "cost": "₦25,000.00", "duration": "3 months" }, "hard-eng": { "name": "Computer
+Hardware Engineering", "cost": "₦30,000.00", "duration": "3 months" }, "desk-pub": { "name": "Desktop Publishing", "cost":
+"₦25,000.00", "duration": "3 months" }, "ms-office-app": { "name": "Microsoft Office Applications", "cost": "₦30,000.00",
+"duration": "3 months" } } } %}
+
+<section id="apply-pay">
+    <div class="container">
+
+        <div class="center">
+            <div class="row">
+                <div class="col-8">
+                    <h1 class="text-center">Payment</h1>
+                </div>
+                <div class="col-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="lead pull-right">
+                                <a href="/payment-pdf" download class="btn btn-lg btn-secondary">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download PDF</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-6">
+                    <p><strong>Application ID: </strong>{{$user._id}}</p>
+                </div>
+                <div class="col-6">
+                    <p><strong>Date submitted: </strong>{{$user.dateCompleted}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center">
+                        Your application has been received by <strong>HILLSON TECHNOLOGY GLOBAL LTD.</strong>
+                    </p>
+                    <p class="text-center">
+                        And you`re required to make the following <strong>payment</strong> and return this
+                        <a href="/payment-pdf" download>confirmation page</a> along with your <strong>deposit slip</strong>                        to our office for further processing.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <table class="table table-hover border-less">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                        <h3>
+                                            <u class="text-center">PERSONAL INFORMATION</u>
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Full Name</th>
+                                    <td>{{$user.name}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email address</th>
+                                    <td>{{$user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone number</th>
+                                    <td>{{$user.phone}}</td>
+                                </tr>
+                            </tbody>
+
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                        <h3>
+                                            <u class="text-center">PROGRAM INFORMATION</u>
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Course Type</th>
+                                    <td>{{$user.profile['course-type'] | capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Preferred Program</th>
+                                    {% if $user.profile['course-type'] == 'basic' %}
+                                    <td>{{$courses['basic-courses'][$user.profile['basic-program']].name}}</td>
+                                    {% else %}
+                                    <td>{{$courses['adv-courses'][$user.profile['adv-program']].name}}</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th scope="row">Duration</th>
+                                    <td>{{$user.profile.duration}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Class Section</th>
+                                    <td>{{$user.profile.timing | capitalize}}</td>
+                                </tr>
+                            </tbody>
+
+                            <thead>
+                                <tr>
+                                    <th colspan="2">
+                                        <h3>
+                                            <u class="text-center">PAYMENT DETAILS</u>
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Course Fee</th>
+                                    <td>{{$user.profile['cost']}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Processing Fee</th>
+                                    <td>₦2,000.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Handout</th>
+                                    <td>₦3,000.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Account Name</th>
+                                    <td>HILLSON TECHNOLOGY GLOBAL LTD.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Bank</th>
+                                    <td>DIAMOND BANK PLC.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Account Number</th>
+                                    <td>0087102812</td>
+                                </tr>
+                                <tr class="table-active">
+                                    <th scope="row">Total</th>
+                                    <td>{{$user.profile.totalCost}}</td>
+                                </tr>
+                            </tbody>
+
+
+                        </table>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center">
+                        Thank you for making the right choice by Choosing
+                    </p>
+                    <p class="text-center">
+                        <strong>HILLSON TECHNOLOGY GLOBAL LTD.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p class="lead pull-right">
+                        <a href="/payment-pdf" download class="btn btn-lg btn-secondary">
+                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download PDF</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% include "_footer.html" %}
+
+</body>
+
+</html>

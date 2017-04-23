@@ -24,12 +24,24 @@
 
                 <form action="/profile" method="POST" enctype="multipart/form-data">
 
+                    <input type="hidden" name="email" value="{{$user.email}}">
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="course-type">Course type</label>
+                            <select class="form-control" id="course-type" name="course-type">
+                                    <option value="" selected>Choose course type</option>
+                                    <option value="basic">Basic</option>
+                                    <option value="advance">Advance</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-6">
-                            <input type="hidden" name="email" value="{{$user.email}}">
-                            <div class="form-group">
-                                <label for="program">Prefered program</label>
-                                <select class="form-control" id="program" name="program" required autofocus>
+                            <div class="form-group" id="advance">
+                                <label for="adv-program">Preferred program</label>
+                                <select class="form-control" id="adv-program" name="adv-program">
                                     <option value="" selected>Choose course</option>
                                     <option value="c-sharp">C# Programming</option>
                                     <option value="php">PHP Programming</option>
@@ -41,91 +53,38 @@
                                     <option value="soft-eng">Software Engineering</option>
                                 </select>
                             </div>
+                            <div class="form-group" id="basic">
+                                <label for="basic-program">Preferred program</label>
+                                <select class="form-control" id="basic-program" name="basic-program">
+                                    <option value="" selected>Choose course</option>
+                                    <option value="intro-comp">Introduction to Computer</option>
+                                    <option value="intro-soft">Introduction to Computer Software’s</option>
+                                    <option value="hard-eng">Computer Hardware Engineering</option>
+                                    <option value="desk-pub">Desktop Publishing</option>
+                                    <option value="ms-office-app">Microsoft Office Applications</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <div id="c-sharp" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦85,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
+                        <div class="col-6" id="prog-info">
+                            <div class="form-group">
+                                <label for="cost">Cost</label>
+                                <input name="cost" class="form-control" id="cost" readonly>
                             </div>
-
-                            <div id="php" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦160,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <input name="duration" class="form-control" id="duration" readonly>
                             </div>
-
-                            <div id="mobile-dev" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦80,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
-                            </div>
-
-                            <div id="content-mgt" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦250,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
-                            </div>
-
-                            <div id="web-design" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦320,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
-                            </div>
-
-                            <div id="comp-network" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦170,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
-                            </div>
-
-                            <div id="comp-hardware" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦60,000
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 6 months
-                                </p>
-                            </div>
-                            <div id="soft-eng" class="group">
-                                <p>
-                                    <strong>Cost:</strong> ₦450,000.00
-                                </p>
-                                <p>
-                                    <strong>Duration:</strong> 1 year
-                                </p>
-                            </div>
-
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <label for="timing">Prefered class timing</label>
+                        <label for="timing">Preferred class timing</label>
                         <select class="form-control" id="timing" name="timing" required>
-                                    <option value="" selected>Choose time</option>
-                                    <option value="morning">Morning</option>
-                                    <option value="afternoon">Afternoon</option>
-                                    <option value="evening">Evening</option>
-                                </select>
+                            <option value="" selected>Choose time</option>
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                            <option value="evening">Evening</option>
+                        </select>
                     </div>
                     <div class="form-group row">
 
@@ -220,7 +179,7 @@
                         </small>
                     </div>
 
-                    <button type="submit" id="submit" class="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" id="submit" class="btn btn-primary btn-block">Continue to payments</button>
                 </form>
             </div>
             <div class="col-0 col-md-3"></div>
@@ -234,15 +193,105 @@
 <script>
     $(document).ready(function () {
 
+        const courses = {
+            "adv-courses": {
+                "c-sharp": {
+                    "name": "C# Programming",
+                    "cost": "₦85,000.00",
+                    "duration": "6 months"
+                },
+                "php": {
+                    "name": "PHP Programming",
+                    "cost": "₦160,000.00",
+                    "duration": "6 months"
+                },
+                "mobile-dev": {
+                    "name": "Mobile App Development",
+                    "cost": "₦80,000.00",
+                    "duration": "6 months"
+                },
+                "content-mgt": {
+                    "name": "Content Management Systems",
+                    "cost": "₦250,000.00",
+                    "duration": "6 months"
+                },
+                "web-design": {
+                    "name": "Website Design",
+                    "cost": "₦320,000.00",
+                    "duration": "6 months"
+                },
+                "comp-network": {
+                    "name": "Computer Networking",
+                    "cost": "₦170,000.00",
+                    "duration": "6 months"
+                },
+                "comp-hardware": {
+                    "name": "Computer Hardware Engineering",
+                    "cost": "₦60,000.00",
+                    "duration": "6 months"
+                },
+                "soft-eng": {
+                    "name": "Software Engineering",
+                    "cost": "₦450,000.00",
+                    "duration": "1 year"
+                }
+            },
+            "basic-courses": {
+                "intro-comp": {
+                    "name": "Introduction to Computer",
+                    "cost": "₦25,000.00",
+                    "duration": "3 months"
+                },
+                "intro-soft": {
+                    "name": "Introduction to Computer Software’s",
+                    "cost": "₦25,000.00",
+                    "duration": "3 months"
+                },
+                "hard-eng": {
+                    "name": "Computer Hardware Engineering",
+                    "cost": "₦30,000.00",
+                    "duration": "3 months"
+                },
+                "desk-pub": {
+                    "name": "Desktop Publishing",
+                    "cost": "₦25,000.00",
+                    "duration": "3 months"
+                },
+                "ms-office-app": {
+                    "name": "Microsoft Office Applications",
+                    "cost": "₦30,000.00",
+                    "duration": "3 months"
+                }
+            }
+        }
+
         // hide elements
-        $('.group').hide();
+        // $('.group').hide();
         $('.other').hide();
         $('.sponsor').hide();
+        $('#basic').hide();
+        $('#advance').hide();
+        $('#prog-info').hide();
+
+
+        $('#course-type').change(function () {
+            $('#basic').hide();
+            $('#advance').hide();
+            $('#prog-info').hide();
+            $('#' + $(this).val()).show();
+        })
 
         // register events
-        $('#program').change(function () {
-            $('.group').hide();
-            $('#' + $(this).val()).show();
+        $('#basic-program').change(function () {
+            $('#prog-info').show();
+            $('#cost').val(courses['basic-courses'][$(this).val()].cost)
+            $('#duration').val(courses['basic-courses'][$(this).val()].duration)
+        })
+
+        $('#adv-program').change(function () {
+            $('#prog-info').show();
+            $('#cost').val(courses['adv-courses'][$(this).val()].cost)
+            $('#duration').val(courses['adv-courses'][$(this).val()].duration)
         })
 
         $('#profession').change(function () {

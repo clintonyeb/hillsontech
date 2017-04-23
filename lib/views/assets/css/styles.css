@@ -157,7 +157,8 @@ h3 {
 #change-pass,
 #enquiries,
 #applics,
-#user-details {
+#user-details,
+#apply-pay {
     margin-top: 70px;
     margin-bottom: 20px;
     min-height: 75%;
@@ -382,4 +383,18 @@ footer {
 
 #infoModal {
     color: #000;
+}
+
+.border-less td, .border-less th, border-less thead {
+    border: none;
+}
+
+.center {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.table thead>tr>th {
+   vertical-align: bottom;
+   border-bottom: none !important;
 }

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <style>
+        .center {
+            margin: 0 auto;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% set $page = response.data.page %} {% set $user = response.data.payload %} {% set $message = response.data.message %} {%
+    set $error = response.error %} {% set $courses = { "adv-courses": { "c-sharp": { "name": "C# Programming", "cost": "₦85,000.00",
+    "duration": "6 months" }, "php": { "name": "PHP Programming", "cost": "₦160,000.00", "duration": "6 months" }, "mobile-dev":
+    { "name": "Mobile App Development", "cost": "₦80,000.00", "duration": "6 months" }, "content-mgt": { "name": "Content
+    Management Systems", "cost": "₦250,000.00", "duration": "6 months" }, "web-design": { "name": "Website Design", "cost":
+    "₦320,000.00", "duration": "6 months" }, "comp-network": { "name": "Computer Networking", "cost": "₦170,000.00", "duration":
+    "6 months" }, "comp-hardware": { "name": "Computer Hardware Engineering", "cost": "₦60,000.00", "duration": "6 months"
+    }, "soft-eng": { "name": "Software Engineering", "cost": "₦450,000.00", "duration": "1 year" } }, "basic-courses": {
+    "intro-comp": { "name": "Introduction to Computer", "cost": "₦25,000.00", "duration": "3 months" }, "intro-soft": { "name":
+    "Introduction to Computer Software’s", "cost": "₦25,000.00", "duration": "3 months" }, "hard-eng": { "name": "Computer
+    Hardware Engineering", "cost": "₦30,000.00", "duration": "3 months" }, "desk-pub": { "name": "Desktop Publishing", "cost":
+    "₦25,000.00", "duration": "3 months" }, "ms-office-app": { "name": "Microsoft Office Applications", "cost": "₦30,000.00",
+    "duration": "3 months" } } } %}
+
+
+    <section id="apply-pay">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-6">
+                    <p><strong>Application ID: </strong>{{$user._id}}</p>
+                </div>
+                <div class="col-6">
+                    <p><strong>Date submitted: </strong>{{$user.dateCompleted}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="border: none;">
+                                        <h3>
+                                            <u class="text-center">PERSONAL INFORMATION</u>
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" style="border: none;">Full Name</th>
+                                    <td style="border: none;">{{$user.name}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border: none;">Email address</th>
+                                    <td style="border: none;">{{$user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border: none;">Phone number</th>
+                                    <td style="border: none;">{{$user.phone}}</td>
+                                </tr>
+                            </tbody>
+
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="border: none;">
+                                        <h3>
+                                            <u class="text-center">PROGRAM INFORMATION</u>
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" style="border: none;">Course Type</th>
+                                    <td style="border: none;">{{$user.profile['course-type'] | capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Preferred Program</th>
+                                    {% if $user.profile['course-type'] == 'basic' %}
+                                    <td style="border:none;">{{$courses['basic-courses'][$user.profile['basic-program']].name}}</td>
+                                    {% else %}
+                                    <td style="border:none;">{{$courses['adv-courses'][$user.profile['adv-program']].name}}</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Duration</th>
+                                    <td style="border:none;">{{$user.profile.duration}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Class Section</th>
+                                    <td style="border:none;">{{$user.profile.timing | capitalize}}</td>
+                                </tr>
+                            </tbody>
+
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="border: none;">
+                                        <h3>
+                                            <u class="text-center">PAYMENT DETAILS</u>
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" style="border:none;">Course Fee</th>
+                                    <td style="border:none;">NGN{{$user.profile['cost'].slice(1)}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Processing Fee</th>
+                                    <td style="border:none;">NGN2,000.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Handout</th>
+                                    <td style="border:none;">NGN3,000.00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Account Name</th>
+                                    <td style="border:none;">HILLSON TECHNOLOGY GLOBAL LTD.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Bank</th>
+                                    <td style="border:none;">DIAMOND BANK PLC.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="border:none;">Account Number</th>
+                                    <td style="border:none;">0087102812</td>
+                                </tr>
+                                <tr class="table-active">
+                                    <th scope="row" style="border:none;">Total</th>
+                                    <th style="border:none;">{{$user.profile.totalCost}}</th>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </p>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center">
+                        Thank you for making the right choice by choosing
+                    </p>
+                    <p class="text-center">
+                        <strong>HILLSON TECHNOLOGY GLOBAL LTD.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

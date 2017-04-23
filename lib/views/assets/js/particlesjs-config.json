@@ -50,7 +50,7 @@
       "distance": 100,
       "color": "#ffffff",
       "opacity": 0.2,
-      "width": 1
+      "width": 0.5
     },
     "move": {
       "enable": true,
@@ -99,7 +99,7 @@
         "duration": 0.4
       },
       "push": {
-        "particles_nb": 4
+        "particles_nb": 1
       },
       "remove": {
         "particles_nb": 2
